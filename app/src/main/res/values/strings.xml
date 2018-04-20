@@ -1,4 +1,18 @@
 <resources>
     <string name="app_name">Elefit</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_elefit">Elefit</string>
+    <string name="liftovi">Liftovi</string>
+    <string name="grafikon">Grafikon</string>
+    <string name="moji_servisi">Moji servisi</string>
+    <string name="title_activity_main2">Main2</string>
+    <string name="title_activity_liftovi">Liftovi</string>
+    <string name="title_activity_grafikon">Grafikon</string>
+    <string name="title_activity_moji_servisi">MojiServisi</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
+    <string name="title_activity_main">MainActivity</string>
+
 </resources>

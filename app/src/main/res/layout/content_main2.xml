@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/pozadina"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".Main2"
+    tools:showIn="@layout/activity_main2">
+
+
+    <Button
+        android:id="@+id/buttonGraf"
+        android:layout_width="120dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginEnd="132dp"
+        android:layout_marginStart="132dp"
+        android:background="@drawable/grafikon"
+        app:layout_constraintBottom_toTopOf="@+id/text_grafikon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/text_grafikon"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="120dp"
+        android:layout_marginEnd="132dp"
+        android:layout_marginStart="132dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Statistika"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@android:color/background_light"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonLiftovi"
+        android:layout_width="120dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="58dp"
+        android:layout_marginTop="76dp"
+        android:background="@drawable/liftovi"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_liftovi"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="58dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Liftovi"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@android:color/background_light"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonLiftovi" />
+
+    <Button
+        android:id="@+id/buttonMojiSevisi"
+        android:layout_width="120dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="76dp"
+        android:background="@drawable/moji_servisi"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_moji_servisi"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Moji servisi"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@android:color/background_light"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonMojiSevisi" />
+
+</android.support.constraint.ConstraintLayout>

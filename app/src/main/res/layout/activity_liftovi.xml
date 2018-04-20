@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="uh.elefit.MainMenu">
+    android:background="@drawable/pozadina"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+
+    tools:context=".Liftovi">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -20,7 +23,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_main_menu" />
+    <include layout="@layout/content_liftovi" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

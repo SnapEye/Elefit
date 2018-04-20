@@ -4,17 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/pozadina"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="uh.elefit.MainMenu"
-    tools:showIn="@layout/activity_main_menu">
+    tools:context=".Liftovi"
+    tools:showIn="@layout/activity_liftovi">
 
-    <TextView
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
+
 
 </android.support.constraint.ConstraintLayout>
