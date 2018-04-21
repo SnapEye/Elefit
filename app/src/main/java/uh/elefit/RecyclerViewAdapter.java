@@ -1,10 +1,12 @@
 package uh.elefit;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -38,6 +40,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.myTextView_datum_servisa.setText(lift.datum_servisa);
         holder.myTextView_ocjena_servisa.setText(lift.ocjena_servisa);
         holder.myTextView_faza.setText(lift.faza);
+        if(lift.ocjena_servisa.toString().equals("A")){
+           holder.fragment.setBackgroundResource(R.drawable.gumb_zeleni);
+        }
+        else if(lift.ocjena_servisa.toString().equals("B")){
+            holder.fragment.setBackgroundResource(R.drawable.gumb_plavi);
+        }
+        else if(lift.ocjena_servisa.toString().equals("C")){
+            holder.fragment.setBackgroundResource(R.drawable.gumb_crveni);
+        }
     }
 
     // total number of rows
@@ -53,6 +64,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView myTextView_datum_servisa;
         TextView myTextView_ocjena_servisa;
         TextView myTextView_faza;
+        RelativeLayout fragment;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -60,6 +72,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             myTextView_datum_servisa = itemView.findViewById(R.id.datum_servisa);
             myTextView_ocjena_servisa = itemView.findViewById(R.id.ocjena_servisa);
             myTextView_faza = itemView.findViewById(R.id.faza);
+            fragment = (RelativeLayout)itemView.findViewById(R.id.fragmentLift);
             itemView.setOnClickListener(this);
         }
 
@@ -72,6 +85,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     // convenience method for getting data at click position
     String getItem(int id) {
         return mData.get(id).id_dizala;
+    }
+    String getOcjena(int id){
+        return mData.get(id).ocjena_servisa;
     }
 
     // allows clicks events to be caught

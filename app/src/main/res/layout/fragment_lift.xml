@@ -4,6 +4,9 @@
     android:id="@+id/fragmentLift"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginEnd="10dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="10dp"
     android:orientation="vertical"
     tools:context=".Lift">
 
@@ -54,8 +57,9 @@
         android:layout_centerVertical="true"
         android:layout_marginEnd="19dp"
         android:text="TextView"
+        android:textAlignment="textEnd"
         android:textColor="@android:color/background_light"
-        android:textSize="15sp"
+        android:textSize="30sp"
         android:textStyle="bold" />
 
 </RelativeLayout>

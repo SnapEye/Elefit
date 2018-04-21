@@ -78,4 +78,11 @@ public class Liftovi extends AppCompatActivity implements RecyclerViewAdapter.It
     public void onItemClick(View view, int position) {
         Toast.makeText(this, "Kliknuli ste " + adapter.getItem(position) + " u redu broj " + (position+1), Toast.LENGTH_SHORT).show();
     }
+
+    public void postaviPozadinu(int id){
+        String ocjena = adapter.getOcjena(id);
+        if(ocjena=="A"){
+
+        }
+    }
 }
