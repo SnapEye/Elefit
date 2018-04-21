@@ -22,8 +22,7 @@ import javax.net.ssl.HttpsURLConnection;
 /**
  * Created by pisoj on 21-Apr-18.
  */
-public class Empty extends
-        AsyncTask<Void, Void, Boolean> {
+public class CallAPI extends AsyncTask<Void, Void, Boolean> {
 
     String urlString = "http://www.yoursite.com/";
 
@@ -32,7 +31,7 @@ public class Empty extends
 
     private int advertisementId;
 
-    public Empty(Context contex, int advertisementId) {
+    public CallAPI(Context contex, int advertisementId) {
 
         this.context = contex;
         this.advertisementId = advertisementId;
