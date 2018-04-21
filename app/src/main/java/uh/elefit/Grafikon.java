@@ -18,8 +18,7 @@ public class Grafikon extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Elefit");
         toolbar.setSubtitle(R.string.grafikon);
-        toolbar.setLogo(R.drawable.logo);
+        //toolbar.setLogo(R.drawable.logo);
 
     }
-
 }

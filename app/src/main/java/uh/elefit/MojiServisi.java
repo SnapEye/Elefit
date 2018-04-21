@@ -18,7 +18,7 @@ public class MojiServisi extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Elefit");
         toolbar.setSubtitle(R.string.moji_servisi);
-        toolbar.setLogo(R.drawable.logo);
+        //toolbar.setLogo(R.drawable.logo);
     }
 
     public void ReturnHome(View view) {
