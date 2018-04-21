@@ -11,12 +11,18 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 public class Liftovi extends AppCompatActivity implements RecyclerViewAdapter.ItemClickListener{
 
     RecyclerViewAdapter adapter;
 
+    final ArrayList<PodaciZaLiftFragment> liftovi = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,19 +40,40 @@ public class Liftovi extends AppCompatActivity implements RecyclerViewAdapter.It
 
         CallAPI api= new CallAPI(queue);
 
-        api.pozovi();
 
-        ArrayList<PodaciZaLiftFragment> liftovi = new ArrayList<>();
+
+
         liftovi.add(new PodaciZaLiftFragment("BT9291AV", "13.04.2015", "B", "5"));
         liftovi.add(new PodaciZaLiftFragment("BT9291AV", "13.04.2015", "B", "5"));
         liftovi.add(new PodaciZaLiftFragment("BT9291AV", "13.04.2015", "B", "5"));
+
+        api.pozovi(new ServerCallback() {
+            @Override
+            public void onSuccess(JSONArray result) {
+                if(result!=null) {
+                    for (int i = 0; i < result.length(); i++) {
+                        try {
+                            JSONObject objekt=result.getJSONObject(i);
+
+                            liftovi.add(new PodaciZaLiftFragment(objekt.getString("id"), objekt.getString("datum"), objekt.getString("ocjena"),  objekt.getString("faza")));
+                        }catch(JSONException e){
+
+                        }
+                    }
+                }
+                postaviFragment();
+            }
+        });
+
+    }
+
+    public void postaviFragment(){
 
         RecyclerView recyclerView = findViewById(R.id.listaLiftova);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new RecyclerViewAdapter(this, liftovi);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
-
     }
 
     @Override

@@ -43,16 +43,17 @@ import javax.net.ssl.HttpsURLConnection;
  * Created by pisoj on 21-Apr-18.
  */
 public class CallAPI{
-    String url = "http://jospudja.pythonanywhere.com/dizala";
+    String url = "http://jospudja.pythonanywhere.com/dizalaZaPrikazUFragmentu";
     RequestQueue MyRequestQueue;
+
+    public JSONArray jsonArray;
 
     public CallAPI(RequestQueue requestQueue) {
         this.MyRequestQueue=requestQueue;
     }
 
 
-    public void pozovi(){
-
+    public JSONArray pozovi(final ServerCallback callback){
 
 
         JsonArrayRequest MyStringRequest = new JsonArrayRequest
@@ -61,6 +62,7 @@ public class CallAPI{
                     @Override
                     public void onResponse(JSONArray response) {
                         System.out.println("Response: " + response.toString());
+                        callback.onSuccess(response);
                     }
                 }, new Response.ErrorListener() {
 
@@ -72,9 +74,8 @@ public class CallAPI{
                 });
 
 
-
-
         System.out.println(MyStringRequest.toString());
         MyRequestQueue.add(MyStringRequest);
+        return jsonArray;
     }
 }
