@@ -1,5 +1,6 @@
 package uh.elefit;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -77,12 +78,11 @@ public class Liftovi extends AppCompatActivity implements RecyclerViewAdapter.It
     @Override
     public void onItemClick(View view, int position) {
         Toast.makeText(this, "Kliknuli ste " + adapter.getItem(position) + " u redu broj " + (position+1), Toast.LENGTH_SHORT).show();
+        promijeniFragment();
     }
 
-    public void postaviPozadinu(int id){
-        String ocjena = adapter.getOcjena(id);
-        if(ocjena=="A"){
-
-        }
+    public  void promijeniFragment(){
+        Intent intent= new Intent(Liftovi.this, DetaljiLifta.class);
+        startActivity(intent);
     }
 }
