@@ -22,6 +22,8 @@ public class Liftovi extends AppCompatActivity implements RecyclerViewAdapter.It
 
     RecyclerViewAdapter adapter;
 
+    String url = "http://jospudja.pythonanywhere.com/dizalaZaPrikazUFragmentu";
+
     final ArrayList<PodaciZaLiftFragment> liftovi = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +45,7 @@ public class Liftovi extends AppCompatActivity implements RecyclerViewAdapter.It
 
 
 
-        liftovi.add(new PodaciZaLiftFragment("BT9291AV", "13.04.2015", "B", "5"));
-        liftovi.add(new PodaciZaLiftFragment("BT9291AV", "13.04.2015", "B", "5"));
-        liftovi.add(new PodaciZaLiftFragment("BT9291AV", "13.04.2015", "B", "5"));
-
-        api.pozovi(new ServerCallback() {
+        api.pozovi(url, new ServerCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 if(result!=null) {
