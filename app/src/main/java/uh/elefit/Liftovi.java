@@ -28,10 +28,10 @@ public class Liftovi extends AppCompatActivity implements RecyclerViewAdapter.It
         toolbar.setSubtitle(R.string.liftovi);
 
 
-        ArrayList<String> liftovi = new ArrayList<>();
-        liftovi.add("nesta,sta ja znam");
-        liftovi.add("nesta drugo");
-        liftovi.add("nesta isto, al drukcije, opet isto, al opet drukcije");
+        ArrayList<PodaciZaLiftFragment> liftovi = new ArrayList<>();
+        liftovi.add(new PodaciZaLiftFragment("BT9291AV", "13.04.2015", "B", "5"));
+        liftovi.add(new PodaciZaLiftFragment("BT9291AV", "13.04.2015", "B", "5"));
+        liftovi.add(new PodaciZaLiftFragment("BT9291AV", "13.04.2015", "B", "5"));
 
         RecyclerView recyclerView = findViewById(R.id.listaLiftova);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -45,5 +45,4 @@ public class Liftovi extends AppCompatActivity implements RecyclerViewAdapter.It
     public void onItemClick(View view, int position) {
         Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
     }
-
 }
