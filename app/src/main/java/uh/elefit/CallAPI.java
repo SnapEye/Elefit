@@ -7,9 +7,25 @@ import android.util.Log;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.android.volley.Cache;
+import com.android.volley.Network;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.BasicNetwork;
+import com.android.volley.toolbox.DiskBasedCache;
+import com.android.volley.toolbox.HurlStack;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -22,158 +38,43 @@ import javax.net.ssl.HttpsURLConnection;
 /**
  * Created by pisoj on 21-Apr-18.
  */
-public class CallAPI extends
-        AsyncTask<Void, Void, Boolean> {
+public class CallAPI {
+    String url = "http://jospudja.pythonanywhere.com/";
+    RequestQueue MyRequestQueue;
 
-    String urlString = "http://www.yoursite.com/";
-
-    private final String TAG = "post json example";
-    private Context context;
-
-    private int advertisementId;
-
-    public CallAPI(Context contex, int advertisementId) {
-
-        this.context = contex;
-        this.advertisementId = advertisementId;
+    public CallAPI(RequestQueue requestQueue) {
+        this.MyRequestQueue=requestQueue;
     }
 
-    @Override
-    protected void onPreExecute() {
-        Log.e(TAG, "1 - RequestVoteTask is about to start...");
+    public void pozovi(){
 
-    }
 
-    @Override
-    protected Boolean doInBackground(Void... params) {
-        boolean status = false;
 
-        String response = "";
-        Log.e(TAG, "2 - pre Request to response...");
 
-        try {
-            response = performPostCall(urlString, new HashMap<String, String>() {
+        StringRequest MyStringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                //This code is executed if the server responds, whether or not the response contains data.
+                //The String 'response' contains the server's response.
+                System.out.println(response);
 
-                private static final long serialVersionUID = 1L;
-
-                {
-                    put("Accept", "application/json");
-                    put("Content-Type", "application/json");
-                }
-            });
-            Log.e(TAG, "3 - give Response...");
-            Log.e(TAG, "4 " + response.toString());
-        } catch (Exception e) {
-            // displayLoding(false);
-
-            Log.e(TAG, "Error ...");
-        }
-        Log.e(TAG, "5 - after Response...");
-
-        if (!response.equalsIgnoreCase("")) {
-            try {
-                Log.e(TAG, "6 - response !empty...");
-                //
-                JSONObject jRoot = new JSONObject(response);
-                JSONObject d = jRoot.getJSONObject("d");
-
-                int ResultType = d.getInt("ResultType");
-                Log.e("ResultType", ResultType + "");
-
-                if (ResultType == 1) {
-
-                    status = true;
-
-                }
-
-            } catch (JSONException e) {
-                // displayLoding(false);
-                // e.printStackTrace();
-                Log.e(TAG, "Error " + e.getMessage());
-            } finally {
-
+                System.out.println("tu sam!!!");
             }
-        } else {
-            Log.e(TAG, "6 - response is empty...");
-
-            status = false;
-        }
-
-        return status;
-    }
-
-    @Override
-    protected void onPostExecute(Boolean result) {
-        //
-        Log.e(TAG, "7 - onPostExecute ...");
-
-        if (result) {
-            Log.e(TAG, "8 - Update UI ...");
-
-            // setUpdateUI(adv);
-        } else {
-            Log.e(TAG, "8 - Finish ...");
-
-            // displayLoding(false);
-            // finish();
-        }
-
-    }
-
-    public String performPostCall(String requestURL,
-                                  HashMap<String, String> postDataParams) {
-
-        URL url;
-        String response = "";
-        try {
-            url = new URL(requestURL);
-
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setReadTimeout(15000);
-            conn.setConnectTimeout(15000);
-            conn.setRequestMethod("POST");
-            conn.setDoInput(true);
-            conn.setDoOutput(true);
-
-            conn.setRequestProperty("Content-Type", "application/json");
-
-            Log.e(TAG, "11 - url : " + requestURL);
-
-            /*
-             * JSON
-             */
-
-            JSONObject root = new JSONObject();
-            //
-
-            Log.e(TAG, "12 - root : " + root.toString());
-
-            String str = root.toString();
-            byte[] outputBytes = str.getBytes("UTF-8");
-            OutputStream os = conn.getOutputStream();
-            os.write(outputBytes);
-
-            int responseCode = conn.getResponseCode();
-
-            Log.e(TAG, "13 - responseCode : " + responseCode);
-
-            if (responseCode == HttpsURLConnection.HTTP_OK) {
-                Log.e(TAG, "14 - HTTP_OK");
-
-                String line;
-                BufferedReader br = new BufferedReader(new InputStreamReader(
-                        conn.getInputStream()));
-                while ((line = br.readLine()) != null) {
-                    response += line;
-                }
-            } else {
-                Log.e(TAG, "14 - False - HTTP_OK");
-                response = "";
+        }, new Response.ErrorListener() { //Create an error listener to handle errors appropriately.
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("zajebo");
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        }) {
+            protected Map<String, String> getParams() {
+                Map<String, String> MyData = new HashMap<String, String>();
+                MyData.put("Field", "Value"); //Add the data you'd like to send to the server.
+                return MyData;
+            }
+        };
 
-        return response;
+        System.out.println(MyStringRequest.toString());
+
+        MyRequestQueue.add(MyStringRequest);
     }
 }

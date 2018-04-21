@@ -8,6 +8,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+
 import java.util.ArrayList;
 
 public class Liftovi extends AppCompatActivity implements RecyclerViewAdapter.ItemClickListener{
@@ -22,11 +25,16 @@ public class Liftovi extends AppCompatActivity implements RecyclerViewAdapter.It
         setSupportActionBar(toolbar);
 
 
-
         //toolbar.setLogo(R.drawable.logo);
         getSupportActionBar().setTitle("Elefit");
         toolbar.setSubtitle(R.string.liftovi);
 
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        CallAPI api= new CallAPI(queue);
+
+        api.pozovi();
 
         ArrayList<PodaciZaLiftFragment> liftovi = new ArrayList<>();
         liftovi.add(new PodaciZaLiftFragment("BT9291AV", "13.04.2015", "B", "5"));
