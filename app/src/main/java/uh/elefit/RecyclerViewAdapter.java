@@ -33,11 +33,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        PodaciZaLiftFragment animal = mData.get(position);
-        holder.myTextView_id_dizala.setText(animal.id_dizala);
-        holder.myTextView_datum_servisa.setText(animal.datum_servisa);
-        holder.myTextView_ocjena_servisa.setText(animal.ocjena_servisa);
-        holder.myTextView_faza.setText(animal.faza);
+        PodaciZaLiftFragment lift = mData.get(position);
+        holder.myTextView_id_dizala.setText(lift.id_dizala);
+        holder.myTextView_datum_servisa.setText(lift.datum_servisa);
+        holder.myTextView_ocjena_servisa.setText(lift.ocjena_servisa);
+        holder.myTextView_faza.setText(lift.faza);
     }
 
     // total number of rows
