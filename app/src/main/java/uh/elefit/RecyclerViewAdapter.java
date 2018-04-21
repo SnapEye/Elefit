@@ -14,13 +14,13 @@ import java.util.List;
  */
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
-    private List<String> mData;
+    private List<PodaciZaLiftFragment> mData;
     private LayoutInflater mInflater;
 
     private ItemClickListener mClickListener;
 
 
-    public RecyclerViewAdapter(Context context, List<String> data) {
+    public RecyclerViewAdapter(Context context, List<PodaciZaLiftFragment> data ) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -33,8 +33,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        String animal = mData.get(position);
-        holder.myTextView.setText(animal);
+        PodaciZaLiftFragment animal = mData.get(position);
+        holder.myTextView_id_dizala.setText(animal.id_dizala);
+        holder.myTextView_datum_servisa.setText(animal.datum_servisa);
+        holder.myTextView_ocjena_servisa.setText(animal.ocjena_servisa);
+        holder.myTextView_faza.setText(animal.faza);
     }
 
     // total number of rows
@@ -46,11 +49,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView myTextView;
+        TextView myTextView_id_dizala;
+        TextView myTextView_datum_servisa;
+        TextView myTextView_ocjena_servisa;
+        TextView myTextView_faza;
 
         ViewHolder(View itemView) {
             super(itemView);
-            myTextView = itemView.findViewById(R.id.ID_dizala);
+            myTextView_id_dizala = itemView.findViewById(R.id.ID_dizala);
+            myTextView_datum_servisa = itemView.findViewById(R.id.datum_servisa);
+            myTextView_ocjena_servisa = itemView.findViewById(R.id.ocjena_servisa);
+            myTextView_faza = itemView.findViewById(R.id.faza);
             itemView.setOnClickListener(this);
         }
 
@@ -61,9 +70,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     // convenience method for getting data at click position
-    String getItem(int id) {
+    /*String getItem(int id) {
         return mData.get(id);
-    }
+    }*/
 
     // allows clicks events to be caught
     void setClickListener(ItemClickListener itemClickListener) {
