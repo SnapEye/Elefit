@@ -27,9 +27,8 @@
         android:id="@+id/servis_faza"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/servis_ciklus"
         android:layout_alignTop="@+id/textView10"
-        android:layout_centerHorizontal="true"
-        android:text="TextView"
         android:textAlignment="viewStart"
         android:textColor="@android:color/background_light" />
 
@@ -37,9 +36,8 @@
         android:id="@+id/servis_ciklus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/servis_ocjena"
         android:layout_alignTop="@+id/textView9"
-        android:layout_centerHorizontal="true"
-        android:text="TextView"
         android:textAlignment="viewStart"
         android:textColor="@android:color/background_light" />
 
@@ -48,9 +46,8 @@
         android:id="@+id/servis_ocjena"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/servis_zadnji_datum"
         android:layout_alignTop="@+id/textView8"
-        android:layout_centerHorizontal="true"
-        android:text="TextView"
         android:textAlignment="viewStart"
         android:textColor="@android:color/background_light" />
 
@@ -58,19 +55,8 @@
         android:id="@+id/servis_zadnji_datum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/korisnik_serviser"
         android:layout_alignTop="@+id/textView7"
-        android:layout_centerHorizontal="true"
-        android:text="TextView"
-        android:textAlignment="viewStart"
-        android:textColor="@android:color/background_light" />
-
-    <TextView
-        android:id="@+id/korisnik_serviser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView6"
-        android:layout_centerHorizontal="true"
-        android:text="TextView"
         android:textAlignment="viewStart"
         android:textColor="@android:color/background_light" />
 
@@ -78,9 +64,8 @@
         android:id="@+id/dizalo_nosivost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/dizalo_model"
         android:layout_alignTop="@+id/textView5"
-        android:layout_centerHorizontal="true"
-        android:text="TextView"
         android:textAlignment="viewStart"
         android:textColor="@android:color/background_light" />
 
@@ -88,9 +73,8 @@
         android:id="@+id/dizalo_model"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/dizalo_proizvođać"
         android:layout_alignTop="@+id/textView4"
-        android:layout_centerHorizontal="true"
-        android:text="TextView"
         android:textAlignment="viewStart"
         android:textColor="@android:color/background_light" />
 
@@ -98,9 +82,8 @@
         android:id="@+id/dizalo_proizvođać"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/dizalo_lokacija"
         android:layout_alignTop="@+id/textView3"
-        android:layout_centerHorizontal="true"
-        android:text="TextView"
         android:textAlignment="viewStart"
         android:textColor="@android:color/background_light" />
 
@@ -109,10 +92,9 @@
         android:id="@+id/dizalo_lokacija"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignTop="@+id/textView2"
-        android:layout_centerHorizontal="true"
-        android:text="TextView"
-        android:textAlignment="viewStart"
+        android:layout_marginStart="115dp"
         android:textColor="@android:color/background_light" />
 
     <TextView
