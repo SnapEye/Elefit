@@ -30,6 +30,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.fragment_lift, parent, false);
+        view.setAlpha(0);
+        view.animate().alpha(1.0f).setDuration(500).start();
         return new ViewHolder(view);
     }
     // binds the data to the TextView in each row
