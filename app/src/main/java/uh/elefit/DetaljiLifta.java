@@ -99,11 +99,22 @@ public class DetaljiLifta extends AppCompatActivity {
 
 
                             view = findViewById(R.id.servis_faza);
-                            view.setText(objekt.getString("faza"));
+                            if(objekt.getString("faza").equals("SMALL1")||objekt.getString("faza").equals("SMALL2")){
+                                view.setText("SMALL");
+                            }
+                            else {
+                                view.setText(objekt.getString("faza"));
+                            }
 
 
                             view = findViewById(R.id.servis_ocjena);
                             view.setText(objekt.getString("ocjena"));
+
+                            view = findViewById(R.id.servis_opaska);
+                            view.setText(objekt.getString("opaska"));
+
+                            view = findViewById(R.id.servis_id_servisa);
+                            view.setText(objekt.getString("sifra"));
 
                         } catch (JSONException e) {
 
