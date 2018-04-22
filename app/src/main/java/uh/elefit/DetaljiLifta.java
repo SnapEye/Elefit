@@ -15,20 +15,29 @@ import org.json.JSONObject;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class DetaljiLifta extends AppCompatActivity {
     String url = "";
     CallAPI api;
+    HashMap<Integer, String>numMap;
+    List<Entry> entries;
+    HashMap<Integer, String>Ocjene;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,13 +47,19 @@ public class DetaljiLifta extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Detalji lifta");
         toolbar.setSubtitle(getIntent().getStringExtra("ID"));
+        numMap=new HashMap<>();
+        entries = new ArrayList<Entry>();
+        Ocjene= new HashMap<>();
+        Ocjene.put(3,"A");
+        Ocjene.put(2,"B");
+        Ocjene.put(1,"C");
 
         RequestQueue queue = Volley.newRequestQueue(this);
         this.api = new CallAPI(queue);
 
         dohvatiDetaljeLifta();
         dohvatiZadnjiServis();
-        napraviGraf();
+        dohvatiServiseZaGraf();
 
     }
 
@@ -74,14 +89,38 @@ public class DetaljiLifta extends AppCompatActivity {
         BarData data = new BarData();
         //BarData data = new BarData((IBarDataSet)labels, dataset);
         chart.setData(data);
+
 */
+
+
         LineChart chart= findViewById(R.id.chart);
 
-        List<Entry> entries = new ArrayList<Entry>();
-        entries.add(new Entry(2, 4));
-        entries.add(new Entry(3, 8));
-        entries.add(new Entry(4, 6));
 
+        XAxis xaxis=chart.getXAxis();
+        System.out.println(numMap.get(1));
+        xaxis.setValueFormatter(new IAxisValueFormatter() {
+
+            @Override
+            public String getFormattedValue(float value, AxisBase axis) {
+                return numMap.get((int)value);
+
+            }
+
+
+        });
+
+        YAxis yaxis=chart.getAxisLeft();
+        yaxis.setValueFormatter(new IAxisValueFormatter() {
+
+            @Override
+            public String getFormattedValue(float value, AxisBase axis) {
+                return Ocjene.get((int)value);
+
+            }
+
+
+        });
+        //System.out.println(entries.get(1));
 
         LineDataSet dataSet = new LineDataSet(entries, "Label");
         LineData lineData= new LineData(dataSet);
@@ -95,6 +134,7 @@ public class DetaljiLifta extends AppCompatActivity {
     protected void dohvatiDetaljeLifta(){
 
         url = "http://jospudja.pythonanywhere.com/dizalaPoId?id=" + getIntent().getStringExtra("ID");
+
         api.pozovi(url, new ServerCallback() {
             @Override
             public void onSuccess(JSONArray result) {
@@ -128,6 +168,46 @@ public class DetaljiLifta extends AppCompatActivity {
 
             }
         });
+    }
+
+    protected void dohvatiServiseZaGraf(){
+        url = "http://jospudja.pythonanywhere.com/servisiPoId?id=" + getIntent().getStringExtra("ID");
+
+        api.pozovi(url, new ServerCallback() {
+            @Override
+            public void onSuccess(JSONArray result) {
+                if (result != null) {
+                    for (int i = 0; i < result.length(); i++) {
+                        try {
+                            JSONObject objekt = result.getJSONObject(i);
+                            /*TextView view = findViewById(R.id.servis_id);
+                            view.setText(objekt.getString("id"));*/
+
+                            System.out.println(objekt.getString("ocjena")+objekt.getString("faza"));
+                            if(objekt.getString("faza").equals("SMALL1")||objekt.getString("faza").equals("SMALL2")){
+                                numMap.put(i, "SMALL");
+                            }
+                            else {
+                                numMap.put(i, objekt.getString("faza"));
+                            }
+                            if(objekt.getString("ocjena").equals("A"))entries.add(new Entry(i, 3));
+                            else if(objekt.getString("ocjena").equals("B"))entries.add(new Entry(i, 2));
+                            else if(objekt.getString("ocjena").equals("C"))entries.add(new Entry(i, 1));
+
+
+
+                        } catch (JSONException e) {
+
+                        }
+
+
+                    }
+                    napraviGraf();
+                }
+
+            }
+        });
+
     }
 
     protected void dohvatiZadnjiServis(){
