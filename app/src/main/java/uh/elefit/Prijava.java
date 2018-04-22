@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -52,8 +53,10 @@ public class Prijava extends AppCompatActivity {
         CallAPI api= new CallAPI(queue);
 
         EditText korime=findViewById(R.id.korisnicko_ime);
+        EditText lozinka=findViewById(R.id.lozinka);
         System.out.println(korime.getText().toString());
-        String url = "http://jospudja.pythonanywhere.com/prijava?korime="+korime.getText().toString();
+
+        String url = "http://jospudja.pythonanywhere.com/prijava?korime="+korime.getText().toString()+"&lozinka="+lozinka.getText().toString();
 
         api.pozovi(url, new ServerCallback() {
             @Override
@@ -62,8 +65,8 @@ public class Prijava extends AppCompatActivity {
                     for (int i = 0; i < result.length(); i++) {
                         try {
                             JSONObject objekt=result.getJSONObject(i);
-                            if(objekt==null){
-                                System.out.println();
+                            if(objekt.getString("id").isEmpty()){
+
                             }
                             else{
                                 Korisnik.id=objekt.getString("id");
@@ -75,9 +78,16 @@ public class Prijava extends AppCompatActivity {
 
                         }
                     }
+                    if(result.length()<1) {
+                        izbaciTost();
+                    }
                 }
             }
         });
+    }
+
+    protected void izbaciTost(){
+        Toast.makeText(this, "Lozinka ili korisnicko ime nisu ispravni", Toast.LENGTH_SHORT).show();
     }
 
 }
