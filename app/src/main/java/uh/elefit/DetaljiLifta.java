@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
@@ -36,7 +37,8 @@ import java.util.List;
 public class DetaljiLifta extends AppCompatActivity {
     String url = "";
     CallAPI api;
-    FloatingActionButton floating_dodaj_novi;
+    Button floating_dodaj_novi;
+    HashMap<String, String> vrijednosti;
     HashMap<Integer, String>numMap;
     List<Entry> entries;
     HashMap<Integer, String>Ocjene;
@@ -51,7 +53,7 @@ public class DetaljiLifta extends AppCompatActivity {
         getSupportActionBar().setTitle("Detalji lifta");
         toolbar.setSubtitle(getIntent().getStringExtra("ID"));
 
-        floating_dodaj_novi = (FloatingActionButton) findViewById(R.id.floating_dodaj_novi_servis);
+        floating_dodaj_novi = findViewById(R.id.btnDodajNoviServis);
         floating_dodaj_novi.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -75,6 +77,9 @@ public class DetaljiLifta extends AppCompatActivity {
 
     public void openDodajNoviServis(){
         Intent intent = new Intent(DetaljiLifta.this, DodavanjeServisa.class);
+        intent.putExtra("ID", getIntent().getStringExtra("ID"));
+        intent.putExtra("faza", vrijednosti.get("servis_faza"));
+        intent.putExtra("faza", vrijednosti.get("servis_ciklus"));
         startActivity(intent);
     }
 
@@ -130,7 +135,7 @@ public class DetaljiLifta extends AppCompatActivity {
     protected void dohvatiDetaljeLifta(){
 
         url = "http://jospudja.pythonanywhere.com/dizalaPoId?id=" + getIntent().getStringExtra("ID");
-
+        vrijednosti=new HashMap<>();
         api.pozovi(url, new ServerCallback() {
             @Override
             public void onSuccess(JSONArray result) {
@@ -139,6 +144,7 @@ public class DetaljiLifta extends AppCompatActivity {
                         try {
                             JSONObject objekt = result.getJSONObject(i);
                             TextView view = findViewById(R.id.dizalo_id);
+                            vrijednosti.put("dizalo_id", objekt.getString("id"));
                             view.setText(objekt.getString("id"));
 
                             view = findViewById(R.id.dizalo_model);
@@ -219,6 +225,7 @@ public class DetaljiLifta extends AppCompatActivity {
                             view.setText(objekt.getString("id"));*/
 
                             TextView view = findViewById(R.id.servis_ciklus);
+                            vrijednosti.put("servis_ciklus", objekt.getString("ciklus"));
                             view.setText(objekt.getString("ciklus"));
 
 
@@ -231,6 +238,7 @@ public class DetaljiLifta extends AppCompatActivity {
 
 
                             view = findViewById(R.id.servis_faza);
+                            vrijednosti.put("servis_faza", objekt.getString("faza"));
                             if(objekt.getString("faza").equals("SMALL1")||objekt.getString("faza").equals("SMALL2")){
                                 view.setText("SMALL");
                             }

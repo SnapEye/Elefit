@@ -18,6 +18,11 @@
         android:layout_marginBottom="200dp"
         android:text="Dodaj" />
 
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <EditText
         android:id="@+id/novi_opaska"
         android:layout_width="wrap_content"
@@ -29,6 +34,7 @@
         android:hint="Opaska"
         android:inputType="textPersonName"
         android:textColor="@android:color/background_light" />
+
 
     <EditText
         android:id="@+id/novi_ocjena"

@@ -284,16 +284,14 @@ android:fillViewport="false">
         android:background="@android:color/background_light"
         android:fadingEdge="horizontal|vertical" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floating_dodaj_novi_servis"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_gravity="end|bottom"
-        android:clickable="true"
-        app:srcCompat="@android:drawable/ic_input_add"
-        android:background="@color/colorPrimary"/>
+    <Button
+        android:id="@+id/btnDodajNoviServis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/chart"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="Dodaj novi servis" />
 
 
 </RelativeLayout>
