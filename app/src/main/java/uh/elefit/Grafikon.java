@@ -6,7 +6,12 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
@@ -33,22 +38,48 @@ public class Grafikon extends AppCompatActivity {
     HashMap<Integer, String>numMap;
     List<Entry> entries;
     HashMap<Integer, String>Ocjene;
+    Spinner s;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grafikon);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setTitle("Elefit");
         toolbar.setSubtitle(R.string.grafikon);
 
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        api= new CallAPI(queue);
+
+        String[] arraySpinner = new String[] {
+                "INIT", "SMALL1", "LARGE", "SMALL2"
+        };
+        s=findViewById(R.id.odabrifaze);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, arraySpinner);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        s.setAdapter(adapter);
 
         numMap=new HashMap<>();
         entries = new ArrayList<Entry>();
         Ocjene= new HashMap<>();
 
+        s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                dohvatiServiseZaGraf(s.getSelectedItem().toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                dohvatiServiseZaGraf("INIT");
+            }
+
+        });
     }
 
     protected void napraviGraf() {
@@ -85,14 +116,16 @@ public class Grafikon extends AppCompatActivity {
         });
 
         LineDataSet dataSet = new LineDataSet(entries, getIntent().getStringExtra("ID"));
+
         LineData lineData= new LineData(dataSet);
         chart.setData(lineData);
         chart.invalidate();
     }
 
-    protected void dohvatiServiseZaGraf(){
-        url = "http://jospudja.pythonanywhere.com/servisiPoFaza" + getIntent().getStringExtra("dizalo");
-
+    protected void dohvatiServiseZaGraf(String faza){
+        this.url = "http://jospudja.pythonanywhere.com/servisiPoFaza?faza="+faza ;
+        numMap.clear();
+        entries.clear();
         api.pozovi(url, new ServerCallback() {
             @Override
             public void onSuccess(JSONArray result) {
@@ -102,12 +135,9 @@ public class Grafikon extends AppCompatActivity {
                             JSONObject objekt = result.getJSONObject(i);
 
                             System.out.println(objekt.getString("ocjena")+objekt.getString("faza"));
-                            if(objekt.getString("faza").equals("SMALL1")||objekt.getString("faza").equals("SMALL2")){
-                                numMap.put(i, "SMALL");
-                            }
-                            else {
-                                numMap.put(i, objekt.getString("faza"));
-                            }
+
+                            numMap.put(i, objekt.getString("dizalo"));
+
                             if(objekt.getString("ocjena").equals("A"))entries.add(new Entry(i, 2));
                             else if(objekt.getString("ocjena").equals("B"))entries.add(new Entry(i, 1));
                             else if(objekt.getString("ocjena").equals("C"))entries.add(new Entry(i, 0));
