@@ -24,7 +24,7 @@ public class Main2 extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Elefit");
         toolbar.setSubtitle("Početni meni");
-        toolbar.setLogo(R.drawable.logo);
+        toolbar.setLogo(R.drawable.logo_icon);
 
 
         button_moji_servisi = (Button) findViewById(R.id.buttonMojiSevisi);
