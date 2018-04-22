@@ -20,8 +20,11 @@
 
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_width="215dp"
+        android:layout_height="45dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="114dp" />
 
     <EditText
         android:id="@+id/novi_opaska"
@@ -36,15 +39,4 @@
         android:textColor="@android:color/background_light" />
 
 
-    <EditText
-        android:id="@+id/novi_ocjena"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="110dp"
-        android:ems="10"
-        android:hint="Ocjena"
-        android:inputType="textPersonName"
-        android:textColor="@android:color/background_light" />
 </RelativeLayout>
