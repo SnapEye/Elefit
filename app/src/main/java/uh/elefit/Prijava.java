@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -29,8 +30,8 @@ public class Prijava extends AppCompatActivity {
         btnPrijava.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Prijava.this, Main2.class);
-                startActivity(intent);
+                provjera();
+
             }
         });
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -50,8 +51,9 @@ public class Prijava extends AppCompatActivity {
 
         CallAPI api= new CallAPI(queue);
 
-
-        String url = "http://jospudja.pythonanywhere.com/prijava?korime="+findViewById(R.id.korisnicko_ime);
+        EditText korime=findViewById(R.id.korisnicko_ime);
+        System.out.println(korime.getText().toString());
+        String url = "http://jospudja.pythonanywhere.com/prijava?korime="+korime.getText().toString();
 
         api.pozovi(url, new ServerCallback() {
             @Override
@@ -60,14 +62,20 @@ public class Prijava extends AppCompatActivity {
                     for (int i = 0; i < result.length(); i++) {
                         try {
                             JSONObject objekt=result.getJSONObject(i);
-
-                            objekt.getString("id");
+                            if(objekt==null){
+                                System.out.println();
+                            }
+                            else{
+                                Korisnik.id=objekt.getString("id");
+                                Intent intent = new Intent(Prijava.this, Main2.class);
+                                startActivity(intent);
+                                finish();
+                            }
                         }catch(JSONException e){
 
                         }
                     }
                 }
-                postaviFragment();
             }
         });
     }
