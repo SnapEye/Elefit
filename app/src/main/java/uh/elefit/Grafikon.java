@@ -12,10 +12,14 @@ import android.widget.Spinner;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -36,7 +40,7 @@ public class Grafikon extends AppCompatActivity {
     CallAPI api;
     HashMap<String, String> vrijednosti;
     HashMap<Integer, String>numMap;
-    List<Entry> entries;
+    List<BarEntry> entries;
     HashMap<Integer, String>Ocjene;
     Spinner s;
 
@@ -65,7 +69,7 @@ public class Grafikon extends AppCompatActivity {
         s.setAdapter(adapter);
 
         numMap=new HashMap<>();
-        entries = new ArrayList<Entry>();
+        entries = new ArrayList<BarEntry>();
         Ocjene= new HashMap<>();
 
         s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -84,7 +88,7 @@ public class Grafikon extends AppCompatActivity {
 
     protected void napraviGraf() {
 
-        LineChart chart= findViewById(R.id.chartSvi);
+        BarChart chart= findViewById(R.id.chartSvi);
 
 
         XAxis xaxis=chart.getXAxis();
@@ -115,10 +119,10 @@ public class Grafikon extends AppCompatActivity {
 
         });
 
-        LineDataSet dataSet = new LineDataSet(entries, getIntent().getStringExtra("ID"));
+        BarDataSet dataSet = new BarDataSet(entries, getIntent().getStringExtra("ID"));
 
-        LineData lineData= new LineData(dataSet);
-        chart.setData(lineData);
+        BarData barData= new BarData(dataSet);
+        chart.setData(barData);
         chart.invalidate();
     }
 
@@ -138,9 +142,9 @@ public class Grafikon extends AppCompatActivity {
 
                             numMap.put(i, objekt.getString("dizalo"));
 
-                            if(objekt.getString("ocjena").equals("A"))entries.add(new Entry(i, 2));
-                            else if(objekt.getString("ocjena").equals("B"))entries.add(new Entry(i, 1));
-                            else if(objekt.getString("ocjena").equals("C"))entries.add(new Entry(i, 0));
+                            if(objekt.getString("ocjena").equals("A"))entries.add(new BarEntry(i, 2));
+                            else if(objekt.getString("ocjena").equals("B"))entries.add(new BarEntry(i, 1));
+                            else if(objekt.getString("ocjena").equals("C"))entries.add(new BarEntry(i, 0));
 
                         } catch (JSONException e) {
 
