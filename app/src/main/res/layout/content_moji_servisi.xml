@@ -8,4 +8,13 @@
     tools:context=".MojiServisi"
     tools:showIn="@layout/activity_moji_servisi">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/listaLiftova"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="10dp"
+        tools:layout_editor_absoluteY="10dp">
+
+    </android.support.v7.widget.RecyclerView>
+
 </android.support.constraint.ConstraintLayout>

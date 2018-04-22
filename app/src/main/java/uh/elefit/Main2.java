@@ -42,7 +42,7 @@ public class Main2 extends AppCompatActivity {
                 openLiftovi();
             }
         });
-
+        Korisnik.id="1";
         button_grafikon = (Button) findViewById(R.id.buttonGraf);
         button_grafikon.setOnClickListener(new View.OnClickListener(){
             @Override
