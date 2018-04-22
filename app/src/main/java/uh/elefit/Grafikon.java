@@ -91,9 +91,10 @@ public class Grafikon extends AppCompatActivity {
         BarChart chart= findViewById(R.id.chartSvi);
 
 
-        XAxis xaxis=chart.getXAxis();
+        YAxis yaxis=chart.getAxisLeft();
         System.out.println(numMap.get(1));
-        xaxis.setValueFormatter(new IAxisValueFormatter() {
+        chart.getAxisRight().setEnabled(false);
+        yaxis.setValueFormatter(new IAxisValueFormatter() {
 
             @Override
             public String getFormattedValue(float value, AxisBase axis) {
@@ -107,9 +108,9 @@ public class Grafikon extends AppCompatActivity {
         Ocjene.put(1,"B");
         Ocjene.put(0,"C");
 
-        YAxis yaxis=chart.getAxisLeft();
-        chart.getAxisRight().setEnabled(false);
-        yaxis.setValueFormatter(new IAxisValueFormatter() {
+        XAxis xaxis=chart.getXAxis();
+        //chart.getAxisRight().setEnabled(false);
+        xaxis.setValueFormatter(new IAxisValueFormatter() {
 
             @Override
             public String getFormattedValue(float value, AxisBase axis) {
@@ -142,9 +143,9 @@ public class Grafikon extends AppCompatActivity {
 
                             numMap.put(i, objekt.getString("dizalo"));
 
-                            if(objekt.getString("ocjena").equals("A"))entries.add(new BarEntry(i, 2));
-                            else if(objekt.getString("ocjena").equals("B"))entries.add(new BarEntry(i, 1));
-                            else if(objekt.getString("ocjena").equals("C"))entries.add(new BarEntry(i, 0));
+                            if(objekt.getString("ocjena").equals("A"))entries.add(new BarEntry(2, i));
+                            else if(objekt.getString("ocjena").equals("B"))entries.add(new BarEntry(1, i));
+                            else if(objekt.getString("ocjena").equals("C"))entries.add(new BarEntry(0, i));
 
                         } catch (JSONException e) {
 
