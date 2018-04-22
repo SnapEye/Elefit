@@ -15,7 +15,7 @@
         android:layout_alignTop="@+id/lozinka"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="86dp"
-        android:text="Button"
+        android:text="Prijavi se"
         tools:layout_editor_absoluteX="148dp"
         tools:layout_editor_absoluteY="279dp" />
 
@@ -27,8 +27,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="46dp"
         android:ems="10"
+        android:hint="Korisničko ime"
         android:inputType="textPersonName"
-        android:text="Name"
         tools:layout_editor_absoluteX="84dp"
         tools:layout_editor_absoluteY="90dp" />
 
@@ -40,8 +40,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="207dp"
         android:ems="10"
+        android:hint="Lozinka"
         android:inputType="textPersonName"
-        android:text="Name"
         tools:layout_editor_absoluteX="84dp"
         tools:layout_editor_absoluteY="136dp" />
 </RelativeLayout>
