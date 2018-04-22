@@ -79,8 +79,9 @@ public class DetaljiLifta extends AppCompatActivity {
 
         List<Entry> entries = new ArrayList<Entry>();
         entries.add(new Entry(2, 4));
-        entries.add(new Entry(1, 3));
-        entries.add(new Entry(3, 6));
+        entries.add(new Entry(3, 8));
+        entries.add(new Entry(4, 6));
+
 
         LineDataSet dataSet = new LineDataSet(entries, "Label");
         LineData lineData= new LineData(dataSet);
