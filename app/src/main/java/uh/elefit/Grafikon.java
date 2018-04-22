@@ -53,7 +53,7 @@ public class Grafikon extends AppCompatActivity {
 
     protected void napraviGraf() {
 
-        LineChart chart= findViewById(R.id.chart);
+        LineChart chart= findViewById(R.id.chartSvi);
 
 
         XAxis xaxis=chart.getXAxis();

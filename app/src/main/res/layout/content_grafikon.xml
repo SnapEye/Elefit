@@ -9,4 +9,12 @@
     tools:context=".Grafikon"
     tools:showIn="@layout/activity_grafikon">
 
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chartSvi"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/servis_opaska"
+        android:layout_marginTop="30dp" />
+
 </android.support.constraint.ConstraintLayout>
