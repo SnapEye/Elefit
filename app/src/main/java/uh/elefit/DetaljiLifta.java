@@ -1,6 +1,8 @@
 package uh.elefit;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -34,6 +36,7 @@ import java.util.List;
 public class DetaljiLifta extends AppCompatActivity {
     String url = "";
     CallAPI api;
+    FloatingActionButton floating_dodaj_novi;
     HashMap<Integer, String>numMap;
     List<Entry> entries;
     HashMap<Integer, String>Ocjene;
@@ -47,6 +50,16 @@ public class DetaljiLifta extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Detalji lifta");
         toolbar.setSubtitle(getIntent().getStringExtra("ID"));
+
+        floating_dodaj_novi = (FloatingActionButton) findViewById(R.id.floating_dodaj_novi_servis);
+        floating_dodaj_novi.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                openDodajNoviServis();
+            }
+        });
+
+
         numMap=new HashMap<>();
         entries = new ArrayList<Entry>();
         Ocjene= new HashMap<>();
@@ -58,6 +71,11 @@ public class DetaljiLifta extends AppCompatActivity {
         dohvatiZadnjiServis();
         dohvatiServiseZaGraf();
 
+    }
+
+    public void openDodajNoviServis(){
+        Intent intent = new Intent(DetaljiLifta.this, DodavanjeServisa.class);
+        startActivity(intent);
     }
 
     protected void napraviGraf() {

@@ -61,7 +61,7 @@
         <activity
             android:name=".DodavanjeServisa"
             android:label="@string/title_activity_dodavanje_servisa"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

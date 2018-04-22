@@ -285,12 +285,11 @@ android:fillViewport="false">
         android:fadingEdge="horizontal|vertical" />
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floating_dodaj_novi_servis"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:id="@+id/floating_dodaj_novi_servis"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_gravity="end|bottom"
         android:clickable="true"
         app:srcCompat="@android:drawable/ic_input_add"
