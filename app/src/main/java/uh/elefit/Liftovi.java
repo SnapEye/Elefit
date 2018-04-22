@@ -77,7 +77,7 @@ public class Liftovi extends AppCompatActivity implements RecyclerViewAdapter.It
 
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(this, "Kliknuli ste " + adapter.getItem(position) + " u redu broj " + (position+1), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Odabrali ste " + adapter.getItem(position) , Toast.LENGTH_SHORT).show();
         promijeniFragment(adapter.getItem(position));
     }
 

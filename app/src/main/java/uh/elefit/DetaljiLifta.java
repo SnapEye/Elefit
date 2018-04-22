@@ -27,8 +27,10 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.DefaultValueFormatter;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
+import com.github.mikephil.charting.utils.ViewPortHandler;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,6 +44,7 @@ public class DetaljiLifta extends AppCompatActivity {
     HashMap<Integer, String>numMap;
     List<Entry> entries;
     HashMap<Integer, String>Ocjene;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +65,8 @@ public class DetaljiLifta extends AppCompatActivity {
         });
 
 
+        onActivityReenter(1, intent);
+
         numMap=new HashMap<>();
         entries = new ArrayList<Entry>();
         Ocjene= new HashMap<>();
@@ -75,8 +80,10 @@ public class DetaljiLifta extends AppCompatActivity {
 
     }
 
+
+
     public void openDodajNoviServis(){
-        Intent intent = new Intent(DetaljiLifta.this, DodavanjeServisa.class);
+        intent = new Intent(DetaljiLifta.this, DodavanjeServisa.class);
         intent.putExtra("ID", getIntent().getStringExtra("ID"));
         intent.putExtra("faza", vrijednosti.get("servis_faza"));
         intent.putExtra("ciklus", vrijednosti.get("servis_ciklus"));
@@ -120,14 +127,16 @@ public class DetaljiLifta extends AppCompatActivity {
 
 
         });
+
         //System.out.println(entries.get(1));
 
         LineDataSet dataSet = new LineDataSet(entries, getIntent().getStringExtra("ID"));
         LineData lineData= new LineData(dataSet);
+        chart.getDescription().setEnabled(false);
         chart.setData(lineData);
         chart.invalidate();
 
-        
+
 
 
 
