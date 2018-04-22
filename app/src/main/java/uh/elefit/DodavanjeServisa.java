@@ -11,8 +11,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-public class DodavanjeServisa extends AppCompatActivity {
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class DodavanjeServisa extends AppCompatActivity {
+    Spinner s;
+    String url;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +39,7 @@ public class DodavanjeServisa extends AppCompatActivity {
         String[] arraySpinner = new String[] {
                 "A","B","C"
         };
-        Spinner s = (Spinner) findViewById(R.id.spinner);
+        s= (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, arraySpinner);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -40,8 +48,54 @@ public class DodavanjeServisa extends AppCompatActivity {
     }
 
     private void unesiPodatke() {
-        //EditText opis=findViewById(R.id.);
-        //EditText ocjena=findViewById(R.id.lozinka);
+        int ciklus= getIntent().getIntExtra("ciklus", 1);
+        String faza= getIntent().getStringExtra("faza");
+        if(!(getIntent().getStringExtra("ocjena").equals("C"))){
+            if(faza.equals("INIT")) faza="SMALL1";
+            else if(faza.equals("SMALL1")) faza="LARGE";
+            else if(faza.equals("LARGE")) faza="SMALL2";
+            else if(faza.equals("SMALL2")){
+                faza="INIT";
+                ciklus++;
+            }
+        }
+        EditText opis=findViewById(R.id.novi_opaska);
+        this.url="http://jospudja.pythonanywhere.com/unosServisa?id_dizalo=" +getIntent().getStringExtra("ID")+
+                "&id_korisnik=" + Korisnik.id +
+                "&ocjena=" + s.getSelectedItem().toString()+
+                "&faza=" +  faza+
+                "&ciklus=" + ciklus+
+                "&opis=" + opis.getText().toString();
+
+        provediUnos();
+
+    }
+
+    private void provediUnos(){
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        CallAPI api= new CallAPI(queue);
+
+
+
+
+        api.pozovi(url, new ServerCallback() {
+            @Override
+            public void onSuccess(JSONArray result) {
+                if(result!=null) {
+                    for (int i = 0; i < result.length(); i++) {
+                        try {
+                            JSONObject objekt=result.getJSONObject(i);
+
+
+                        }catch(JSONException e){
+
+                        }
+                    }
+                }
+            }
+        });
+        finish();
     }
 
 }

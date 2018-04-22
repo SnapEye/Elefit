@@ -79,7 +79,8 @@ public class DetaljiLifta extends AppCompatActivity {
         Intent intent = new Intent(DetaljiLifta.this, DodavanjeServisa.class);
         intent.putExtra("ID", getIntent().getStringExtra("ID"));
         intent.putExtra("faza", vrijednosti.get("servis_faza"));
-        intent.putExtra("faza", vrijednosti.get("servis_ciklus"));
+        intent.putExtra("ciklus", vrijednosti.get("servis_ciklus"));
+        intent.putExtra("ocjena", vrijednosti.get("servis_ocjena"));
         startActivity(intent);
     }
 
@@ -248,6 +249,7 @@ public class DetaljiLifta extends AppCompatActivity {
 
 
                             view = findViewById(R.id.servis_ocjena);
+                            vrijednosti.put("servis_ocjena", objekt.getString("ocjena"));
                             view.setText(objekt.getString("ocjena"));
 
                             view = findViewById(R.id.servis_opaska);
