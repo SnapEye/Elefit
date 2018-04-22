@@ -24,7 +24,6 @@ public class DetaljiLifta extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setTitle(getIntent().getStringExtra("ID"));
-<<<<<<< HEAD
 
 
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -48,10 +47,6 @@ public class DetaljiLifta extends AppCompatActivity {
             }
         });
 
-
-
-=======
->>>>>>> a7c23b7be45facdc865ac2151bae1f228d629078
     }
 
 }
