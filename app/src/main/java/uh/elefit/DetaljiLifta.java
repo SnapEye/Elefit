@@ -16,8 +16,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class DetaljiLifta extends AppCompatActivity {
-    String url = "http://jospudja.pythonanywhere.com/dizalaPoId";
-
+    String url = "";
+    CallAPI api;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,12 +25,20 @@ public class DetaljiLifta extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setTitle(getIntent().getStringExtra("ID"));
-        url += "?id=" + getIntent().getStringExtra("ID");
+        getSupportActionBar().setTitle("Detalji Lifta");
+        toolbar.setSubtitle(getIntent().getStringExtra("ID"));
 
         RequestQueue queue = Volley.newRequestQueue(this);
-        CallAPI api = new CallAPI(queue);
+        this.api = new CallAPI(queue);
 
+        dohvatiDetaljeLifta();
+        dohvatiZadnjiServis();
+
+    }
+
+    protected void dohvatiDetaljeLifta(){
+
+        url = "http://jospudja.pythonanywhere.com/dizalaPoId?id=" + getIntent().getStringExtra("ID");
         api.pozovi(url, new ServerCallback() {
             @Override
             public void onSuccess(JSONArray result) {
@@ -64,6 +72,46 @@ public class DetaljiLifta extends AppCompatActivity {
 
             }
         });
+    }
 
+    protected void dohvatiZadnjiServis(){
+        url = "http://jospudja.pythonanywhere.com/detaljiDizalaServis?id=" + getIntent().getStringExtra("ID");
+        api.pozovi(url, new ServerCallback() {
+            @Override
+            public void onSuccess(JSONArray result) {
+                if (result != null) {
+                    for (int i = 0; i < result.length(); i++) {
+                        try {
+                            JSONObject objekt = result.getJSONObject(i);
+                            /*TextView view = findViewById(R.id.servis_id);
+                            view.setText(objekt.getString("id"));*/
+
+                            TextView view = findViewById(R.id.servis_ciklus);
+                            view.setText(objekt.getString("ciklus"));
+
+
+                            view = findViewById(R.id.servis_zadnji_datum);
+                            view.setText(objekt.getString("datum"));
+
+
+                            view = findViewById(R.id.korisnik_serviser);
+                            view.setText(objekt.getString("ime")+" "+objekt.getString("prezime"));
+
+
+                            view = findViewById(R.id.servis_faza);
+                            view.setText(objekt.getString("faza"));
+
+
+                            view = findViewById(R.id.servis_ocjena);
+                            view.setText(objekt.getString("ocjena"));
+
+                        } catch (JSONException e) {
+
+                        }
+                    }
+                }
+
+            }
+        });
     }
 }
