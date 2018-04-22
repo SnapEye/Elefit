@@ -21,7 +21,6 @@ android:fillViewport="false">
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/servis_faza"
         android:layout_alignTop="@+id/textView18"
-        android:maxLines="5"
         android:scrollbars="vertical"
         android:textAlignment="viewStart"
         android:textColor="@android:color/background_light" />
