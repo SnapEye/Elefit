@@ -8,12 +8,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class Main2 extends AppCompatActivity {
 
     private Button button_moji_servisi;
     private Button button_liftovi;
     private Button button_grafikon;
+    private TextView klik_Odjavi_se;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +44,21 @@ public class Main2 extends AppCompatActivity {
                 openLiftovi();
             }
         });
+
         Korisnik.id="1";
         button_grafikon = (Button) findViewById(R.id.buttonGraf);
         button_grafikon.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 openGrafikon();
+            }
+        });
+
+        klik_Odjavi_se =  findViewById(R.id.odjavi_se);
+        klik_Odjavi_se.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                openPrijaviSe();
             }
         });
     }
@@ -64,6 +75,12 @@ public class Main2 extends AppCompatActivity {
     public void openGrafikon(){
         Intent intent = new Intent(Main2.this, Grafikon.class);
         startActivity(intent);
+    }
+
+    public void openPrijaviSe(){
+        Intent intent = new Intent(Main2.this, Prijava.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override
