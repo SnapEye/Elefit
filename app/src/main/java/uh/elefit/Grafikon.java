@@ -53,7 +53,7 @@ public class Grafikon extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setTitle("Elefit");
-        toolbar.setSubtitle(R.string.grafikon);
+        toolbar.setSubtitle("Statistika");
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
@@ -91,10 +91,11 @@ public class Grafikon extends AppCompatActivity {
         BarChart chart= findViewById(R.id.chartSvi);
 
 
-        YAxis yaxis=chart.getAxisLeft();
+        XAxis xaxis=chart.getXAxis();
+        //chart.getAxisRight().setEnabled(false);
         System.out.println(numMap.get(1));
-        chart.getAxisRight().setEnabled(false);
-        yaxis.setValueFormatter(new IAxisValueFormatter() {
+
+        xaxis.setValueFormatter(new IAxisValueFormatter() {
 
             @Override
             public String getFormattedValue(float value, AxisBase axis) {
@@ -108,9 +109,9 @@ public class Grafikon extends AppCompatActivity {
         Ocjene.put(1,"B");
         Ocjene.put(0,"C");
 
-        XAxis xaxis=chart.getXAxis();
-        //chart.getAxisRight().setEnabled(false);
-        xaxis.setValueFormatter(new IAxisValueFormatter() {
+        YAxis yaxis=chart.getAxisLeft();
+        chart.getAxisRight().setEnabled(false);
+        yaxis.setValueFormatter(new IAxisValueFormatter() {
 
             @Override
             public String getFormattedValue(float value, AxisBase axis) {
@@ -122,6 +123,7 @@ public class Grafikon extends AppCompatActivity {
 
         BarDataSet dataSet = new BarDataSet(entries, getIntent().getStringExtra("ID"));
 
+        chart.getDescription().setEnabled(false);
         BarData barData= new BarData(dataSet);
         chart.setData(barData);
         chart.invalidate();
@@ -143,9 +145,9 @@ public class Grafikon extends AppCompatActivity {
 
                             numMap.put(i, objekt.getString("dizalo"));
 
-                            if(objekt.getString("ocjena").equals("A"))entries.add(new BarEntry(2, i));
-                            else if(objekt.getString("ocjena").equals("B"))entries.add(new BarEntry(1, i));
-                            else if(objekt.getString("ocjena").equals("C"))entries.add(new BarEntry(0, i));
+                            if(objekt.getString("ocjena").equals("A"))entries.add(new BarEntry(i, 2));
+                            else if(objekt.getString("ocjena").equals("B"))entries.add(new BarEntry(i, 1));
+                            else if(objekt.getString("ocjena").equals("C"))entries.add(new BarEntry(i, 0));
 
                         } catch (JSONException e) {
 
