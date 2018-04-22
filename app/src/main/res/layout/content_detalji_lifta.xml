@@ -23,7 +23,7 @@
         android:id="@+id/podnaslov"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/servis_zadnji_datum"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="190dp"
         android:text="Zadnji servis"
@@ -265,7 +265,8 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="181dp"
-        android:background="@android:color/background_light" />
+        android:background="@android:color/background_light"
+        android:fadingEdge="horizontal" />
 
 
 </RelativeLayout>

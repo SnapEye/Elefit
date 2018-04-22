@@ -25,7 +25,7 @@ public class DetaljiLifta extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setTitle("Detalji Lifta");
+        getSupportActionBar().setTitle("Detalji lifta");
         toolbar.setSubtitle(getIntent().getStringExtra("ID"));
 
         RequestQueue queue = Volley.newRequestQueue(this);
