@@ -18,9 +18,13 @@ import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DetaljiLifta extends AppCompatActivity {
     String url = "";
@@ -45,7 +49,7 @@ public class DetaljiLifta extends AppCompatActivity {
     }
 
     protected void napraviGraf() {
-        //BarChart chart = (BarChart) findViewById(R.id.chart);
+        /*BarChart chart = (BarChart) findViewById(R.id.chart);
 
         ArrayList<BarEntry> entries = new ArrayList<>();
         entries.add(new BarEntry(4f, 0));
@@ -65,11 +69,26 @@ public class DetaljiLifta extends AppCompatActivity {
         labels.add("May");
         labels.add("June");
 
-        BarChart chart = new BarChart(this);
+        //BarChart chart = new BarChart(this);
         setContentView(chart);
-
-        BarData data = new BarData((IBarDataSet)labels, dataset);
+        BarData data = new BarData();
+        //BarData data = new BarData((IBarDataSet)labels, dataset);
         chart.setData(data);
+*/
+        LineChart chart= findViewById(R.id.chart);
+
+        List<Entry> entries = new ArrayList<Entry>();
+        entries.add(new Entry(2, 4));
+        entries.add(new Entry(1, 3));
+        entries.add(new Entry(3, 6));
+
+        LineDataSet dataSet = new LineDataSet(entries, "Label");
+        LineData lineData= new LineData(dataSet);
+        chart.setData(lineData);
+        chart.invalidate();
+
+
+
     }
 
     protected void dohvatiDetaljeLifta(){
