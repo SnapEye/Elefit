@@ -6,11 +6,39 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="uh.elefit.DodavanjeServisa"
+    android:background="@drawable/pozadina"
     tools:showIn="@layout/activity_dodavanje_servisa">
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/gumb_dodaj_novi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="200dp"
+        android:text="Dodaj" />
+
+    <EditText
+        android:id="@+id/novi_opaska"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="185dp"
+        android:ems="10"
+        android:hint="Opaska"
+        android:inputType="textPersonName"
+        android:textColor="@android:color/background_light" />
+
+    <EditText
+        android:id="@+id/novi_ocjena"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="110dp"
+        android:ems="10"
+        android:hint="Ocjena"
+        android:inputType="textPersonName"
+        android:textColor="@android:color/background_light" />
 </RelativeLayout>
