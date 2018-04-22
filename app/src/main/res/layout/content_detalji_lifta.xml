@@ -61,6 +61,15 @@
         android:textColor="@android:color/background_light" />
 
     <TextView
+        android:id="@+id/korisnik_serviser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/dizalo_nosivost"
+        android:layout_alignTop="@+id/textView6"
+        android:textAlignment="viewStart"
+        android:textColor="@android:color/background_light" />
+
+    <TextView
         android:id="@+id/dizalo_nosivost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
