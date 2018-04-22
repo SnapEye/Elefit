@@ -11,7 +11,29 @@
     <!-- TODO: Update blank fragment layout -->
 
     <TextView
+        android:id="@+id/servis_opaska"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/servis_faza"
+        android:layout_alignTop="@+id/textView18"
+        android:textAlignment="viewStart"
+        android:textColor="@android:color/background_light" />
+
+    <TextView
         android:id="@+id/dizalo_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/servis_zadnji_datum"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+        android:text="Zadni servis"
+        android:textColor="@android:color/background_light"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/dizalo_id2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -22,13 +44,12 @@
         android:textSize="20sp"
         android:textStyle="bold" />
 
-
     <TextView
         android:id="@+id/servis_faza"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/servis_ciklus"
-        android:layout_alignTop="@+id/textView10"
+        android:layout_alignTop="@+id/textView16"
+        android:layout_toEndOf="@+id/servis_ciklus"
         android:textAlignment="viewStart"
         android:textColor="@android:color/background_light" />
 
@@ -65,6 +86,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/dizalo_nosivost"
+        android:layout_alignTop="@+id/textView19"
+        android:textAlignment="viewStart"
+        android:textColor="@android:color/background_light" />
+
+    <TextView
+        android:id="@+id/servis_id_servisa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/servis_faza"
         android:layout_alignTop="@+id/textView6"
         android:textAlignment="viewStart"
         android:textColor="@android:color/background_light" />
@@ -107,7 +137,7 @@
         android:textColor="@android:color/background_light" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/textView16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -156,7 +186,29 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/textView2"
-        android:layout_marginTop="190dp"
+        android:layout_marginTop="360dp"
+        android:text="Šifra servisa:"
+        android:textColor="@android:color/background_light"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/textView2"
+        android:layout_marginTop="420dp"
+        android:text="Opaska:"
+        android:textColor="@android:color/background_light"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/textView2"
+        android:layout_marginTop="390dp"
         android:text="Serviser:"
         android:textColor="@android:color/background_light"
         android:textStyle="bold" />
@@ -205,6 +257,15 @@
         android:text="Lokacija:"
         android:textColor="@android:color/background_light"
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="181dp"
+        android:background="@android:color/background_light" />
 
 
 </RelativeLayout>
