@@ -20,7 +20,7 @@ android:fillViewport="false">
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/chart"
         android:layout_width="match_parent"
-        android:layout_height="402dp"
+        android:layout_height="300dp"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/servis_opaska"
         android:layout_marginTop="30dp" />
@@ -285,6 +285,8 @@ android:fillViewport="false">
         android:fadingEdge="horizontal|vertical" />
 
     <android.support.design.widget.FloatingActionButton
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:id="@+id/floating_dodaj_novi_servis"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"

@@ -122,7 +122,7 @@ public class DetaljiLifta extends AppCompatActivity {
         });
         //System.out.println(entries.get(1));
 
-        LineDataSet dataSet = new LineDataSet(entries, "Label");
+        LineDataSet dataSet = new LineDataSet(entries, getIntent().getStringExtra("ID"));
         LineData lineData= new LineData(dataSet);
         chart.setData(lineData);
         chart.invalidate();
